@@ -1,0 +1,8 @@
+0.25
+Quarter
+0.01
+Nickel
+0.25
+Quarter
+0.1
+Dime
