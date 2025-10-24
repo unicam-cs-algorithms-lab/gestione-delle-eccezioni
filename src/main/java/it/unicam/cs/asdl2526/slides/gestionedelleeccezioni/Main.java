@@ -18,7 +18,7 @@ public class Main {
         /*
          * Inserire il nome completo a partire dalla cartella del progetto, ad
          * esempio
-         * "src/main/java/resources/purse1.txt"
+         * "src/main/resources/purse1.txt"
          */
         String fileName = JOptionPane.showInputDialog("Enter File name");
         while (!done) {
