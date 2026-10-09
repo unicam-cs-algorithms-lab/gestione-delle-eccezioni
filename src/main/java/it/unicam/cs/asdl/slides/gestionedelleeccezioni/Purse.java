@@ -1,4 +1,4 @@
-package it.unicam.cs.asdl2526.slides.gestionedelleeccezioni;
+package it.unicam.cs.asdl.slides.gestionedelleeccezioni;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -9,7 +9,7 @@ import java.util.List;
 /**
  * Un oggetto della classe Purse è un borsellino che può contenere un certo
  * numero di monete.
- * 
+ *
  * @author Luca Tesei
  *
  */
@@ -29,7 +29,7 @@ public class Purse {
      * contenere un numero pari di righe. Nelle righe pari deve esserci il
      * valore della moneta e nelle righe dispari deve esserci il nome della
      * moneta.
-     * 
+     *
      * @param fileName
      *                     il nome del file da leggere (percorso completo o
      *                     relativo)
@@ -38,6 +38,8 @@ public class Purse {
      *                         file
      */
     public void readFile(String fileName) throws IOException {
+        if (fileName == null)
+            throw new NullPointerException("Nome del file nullo");
         BufferedReader in = null;
         try {
             // apre il file e crea un buffered reader
@@ -47,14 +49,14 @@ public class Purse {
         } finally {
             // chiude il file se era stato aperto
             if (in != null)
-                in.close();
+                in.close(); // Eseguito anche se read ha lanciato un'eccezione.
         }
     }
 
     /**
      * Legge da uno stream di caratteri la descrizione delle monete di questo
      * borsellino. Aggiunge le monete una ad una man mano che sono lette.
-     * 
+     *
      * @param in
      *               il buffered reader da cui leggere le monete
      * @throws IOException
@@ -62,12 +64,15 @@ public class Purse {
      *                         file
      */
     public void read(BufferedReader in) throws IOException {
+        if (in == null)
+            throw new NullPointerException("Lettore nullo");
         boolean done = false;
         // Ciclo fino a quando il file non è terminato
         while (!done) {
             // creo la moneta vuota
             Coin c = new Coin();
             // leggo il contenuto
+            // La moneta entra nel borsellino solo dopo una lettura completa.
             if (c.read(in))
                 // lettura corretta
                 this.add(c);
@@ -79,7 +84,7 @@ public class Purse {
 
     /**
      * Restituisce il valore totale delle monete di questo borsellino.
-     * 
+     *
      * @return la somma del valore delle monete di questo borsellino
      */
     public double getTotal() {
@@ -93,10 +98,10 @@ public class Purse {
 
     /**
      * Inserisce una nuova moneta in questo borsellino.
-     * 
+     *
      * @param c
      *              la moneta da inserire
-     * 
+     *
      * @throws NullPointerException
      *                                  se la moneta passata è null
      */
@@ -107,6 +112,7 @@ public class Purse {
         this.coins.add(c);
     }
 
+    /** @return la rappresentazione testuale delle monete, senza stampare */
     @Override
     public String toString() {
         StringBuffer sb = new StringBuffer("*** Purse Content ***\n");

@@ -1,12 +1,11 @@
-/**
- * 
- */
-package it.unicam.cs.asdl2526.slides.gestionedelleeccezioni;
+package it.unicam.cs.asdl.slides.gestionedelleeccezioni;
 
 /**
- * Eccezione che viene lanciata quando il saldo attuale di un conto non è
- * sufficiente per eseguire l'operazione in corso.
- * 
+ * Esempio di eccezione personalizzata non controllata. Estendendo
+ * {@link RuntimeException}, non obbliga il chiamante a dichiarare
+ * {@code throws} o a installare un gestore. Non e' utilizzata da
+ * {@link Purse}: illustra la definizione di un tipo di errore di dominio.
+ *
  * @author Luca Tesei
  *
  */
@@ -23,7 +22,7 @@ public class InsufficientFundException extends RuntimeException {
 
     /**
      * Costruisce l'eccezione con il messaggio associato. 
-     * 
+     *
      * @param message messaggio associato all'eccezione
      */
     public InsufficientFundException(String message) {

@@ -1,4 +1,4 @@
-package it.unicam.cs.asdl2526.slides.gestionedelleeccezioni;
+package it.unicam.cs.asdl.slides.gestionedelleeccezioni;
 
 import java.io.EOFException;
 import java.io.IOException;
@@ -6,8 +6,10 @@ import java.io.IOException;
 import javax.swing.JOptionPane;
 
 /**
- * Semplice classe di test interattivo per la lettura di monete da un file.
- * 
+ * Front-end interattivo che dimostra la gestione competente delle eccezioni.
+ * La business logic propaga gli errori, mentre questo metodo li comunica
+ * all'utente e consente di riprovare. La cancellazione e' un evento previsto.
+ *
  * @author Luca Tesei
  *
  */
@@ -15,12 +17,16 @@ public class Main {
 
     public static void main(String[] args) {
         boolean done = false;
+        // I catch piu' specifici devono precedere quelli piu' generali.
         /*
          * Inserire il nome completo a partire dalla cartella del progetto, ad
          * esempio
          * "src/main/resources/purse1.txt"
          */
         String fileName = JOptionPane.showInputDialog("Enter File name");
+        // Cancel non e' un errore: termina normalmente l'interazione.
+        if (fileName == null)
+            return;
         while (!done) {
             // Installo il gestore di tutte le possibili eccezioni che possono
             // essere lanciate e comunico il problema all'utente sullo standard
@@ -39,6 +45,8 @@ public class Main {
             } catch (NumberFormatException e) {
                 System.out
                         .println("Error reading the value: " + e.getMessage());
+            } catch (IllegalArgumentException e) {
+                System.out.println("Dati non validi: " + e.getMessage());
             }
             if (!done) {
                 fileName = JOptionPane
