@@ -1,9 +1,8 @@
 package it.unicam.cs.asdl.slides.gestionedelleeccezioni;
 
+import javax.swing.*;
 import java.io.EOFException;
 import java.io.IOException;
-
-import javax.swing.JOptionPane;
 
 /**
  * Front-end interattivo che dimostra la gestione competente delle eccezioni.
@@ -38,13 +37,26 @@ public class Main {
                 System.out.println("Total: " + myPurse.getTotal());
                 done = true;
             } catch (EOFException e) {
+                /* L'ordine dei catch conta: EOFException è sottoclasse di
+                   IOException e quindi il catch va messo prima di quello
+                   di IOException, altrimenti EOFException viene
+                   intercettata dal catch di IOException
+                 */
                 System.out.println(
                         "Il file passato si interrompe inaspettatamente");
             } catch (IOException e) {
                 System.out.println("Input/Output error: " + e.getMessage());
             } catch (NumberFormatException e) {
+                /* Anche in questo caso l'ordine dei catch conta:
+                NumberFormatException è sottoclasse di
+                IllegalArgumentException e quindi il catch va messo prima
+                di quello di IllegalArgumentException, altrimenti
+                NumberFormatException viene intercettata dal catch di
+                IllegalArgumentException
+                 */
                 System.out
-                        .println("Error reading the value: " + e.getMessage());
+                        .println(
+                                "Error reading the value: " + e.getMessage());
             } catch (IllegalArgumentException e) {
                 System.out.println("Dati non validi: " + e.getMessage());
             }

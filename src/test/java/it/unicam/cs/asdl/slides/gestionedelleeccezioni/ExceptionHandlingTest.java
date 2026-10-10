@@ -96,7 +96,7 @@ public class ExceptionHandlingTest {
     @Test
     public void testEccezionePersonalizzata() {
         // La nostra eccezione estende RuntimeException: e' unchecked.
-        InsufficientFundException e = new InsufficientFundException("Saldo insufficiente");
+        InsufficientFundsException e = new InsufficientFundsException("Saldo insufficiente");
         assertEquals("Saldo insufficiente", e.getMessage());
         assertTrue(e instanceof RuntimeException);
     }

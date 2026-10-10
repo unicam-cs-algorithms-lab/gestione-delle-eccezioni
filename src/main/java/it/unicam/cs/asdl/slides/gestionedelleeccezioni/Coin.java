@@ -118,6 +118,9 @@ public class Coin {
         newName = newName.trim();
         if (newName.isEmpty())
             throw new IllegalArgumentException("Nome della moneta vuoto");
+        // i campi dell'oggetto sono aggiornati ora che tutti i valori sono
+        // corretti e disponibili, altrimenti sarebbe stato eseguito un
+        // aggiornamento parziale
         this.value = newValue;
         this.name = newName;
         return true;
